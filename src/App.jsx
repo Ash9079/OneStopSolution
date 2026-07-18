@@ -6,10 +6,12 @@ import AboutPage from "./pages/About";
 import Services from "./pages/Services";
 import Industries from "./pages/Industries";
 import Gallery from "./pages/Gallery";
-// import FAQ from "./pages/FAQ";
+import FAQ from "./pages/FAQ";
 import Contact from "./pages/Contact";
-// import ApplyForJobs from "./pages/ApplyForJobs";
-// import HireEmployees from "./pages/HireEmployees";
+import ApplyForJobs from "./pages/ApplyForJob";
+import HireEmployees from "./pages/HireEmployee";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import Terms from "./pages/TermsConditions";
 
 export default function App() {
   return (
@@ -22,17 +24,11 @@ export default function App() {
       <Route path="gallery" element={<Gallery />} />
       <Route path="services" element={<Services />} />
       <Route path="contact" element={<Contact />} />
-    //   {/* <Route path="/" element={<Layout />}>
-       
-    //    
-          
-  
-    
-    //     <Route path="faq" element={<FAQ />} />
-
-    //     <Route path="apply-for-jobs" element={<ApplyForJobs />} />
-    //     <Route path="hire-employees" element={<HireEmployees />} />
-    //   </Route> */}
+      <Route path="faq" element={<FAQ />} />
+      <Route path="apply-for-jobs" element={<ApplyForJobs />} />
+      <Route path="hire-employees" element={<HireEmployees />} />
+      <Route path="PrivacyPolicy" element={<PrivacyPolicy />} />
+      <Route path="TermsConditions" element={<Terms />} />
     </Routes>
     <Footer />
     </>

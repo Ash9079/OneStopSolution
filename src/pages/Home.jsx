@@ -1,6 +1,7 @@
 // src/pages/Home.jsx
 import { useState, useEffect, useRef } from "react";
 import { Box, Container, Typography, Button } from "@mui/material";
+import { Link } from "react-router-dom";
 import Homebg1 from "../assets/Homebg1.jpg"
 import Homebg2 from "../assets/Homebg2.jpg"
 import Homebg3 from "../assets/Homebg3.jpg"
@@ -212,6 +213,8 @@ const [currentBg, setCurrentBg] = useState(0);
                 }}
             >
                 <Button
+                    component={Link}
+                    to="/hire-employees"
                 sx={{
                     textTransform: "none",
                     fontWeight: 700,
@@ -226,6 +229,8 @@ const [currentBg, setCurrentBg] = useState(0);
                 </Button>
 
                 <Button
+                    component={Link}
+                    to="/apply-for-jobs"
                 sx={{
                     textTransform: "none",
                     color: "#fff",
@@ -239,6 +244,8 @@ const [currentBg, setCurrentBg] = useState(0);
                 </Button>
 
                 <Button
+                    component={Link}
+                    to="/apply-for-jobs"
                 sx={{
                     textTransform: "none",
                     color: "#fff",
@@ -252,6 +259,8 @@ const [currentBg, setCurrentBg] = useState(0);
                 </Button>
 
                 <Button
+                component={Link}
+                to="/hire-employees"
                 sx={{
                     textTransform: "none",
                     color: "#fff",
@@ -361,7 +370,8 @@ function WhoWeAre() {
             compliance, corporate training and post-placement support across India — with deep expertise in the
             Jewellery Industry.
           </Typography>
-          <Box sx={{ display: "flex", alignItems: "center", gap: 1, cursor: "pointer" }}>
+          
+          <Box component={Link} to="/about" sx={{ display: "flex", alignItems: "center", gap: 1, cursor: "pointer" }}>
             <Typography sx={{ fontSize: "15px", fontWeight: 600, color: "#0A2647" }}>Read the full company story</Typography>
             <ArrowRight color="#0A2647" />
           </Box>
@@ -382,19 +392,19 @@ function WhoWeAre() {
 }
 
 /* =========================================================
-   3. SERVICES — blue hover
+   3. SERVICES — blue hover, cards deep-link into /services
 ========================================================= */
 function Services() {
   const services = [
-    { icon: <UsersIcon />, num: "01", title: "Placement Services", desc: "Curated talent for permanent, contract and executive roles across India." },
-    { icon: <ClipboardIcon />, num: "02", title: "Payroll Services", desc: "End-to-end payroll operations, statutory-ready and audit-friendly." },
-    { icon: <ShieldIcon />, num: "03", title: "HR Compliance", desc: "Stay fully compliant with Indian labour and statutory regulations." },
-    { icon: <BuildingIcon />, num: "04", title: "HR Outsourcing", desc: "Your extended HR team — policies, audits, performance and consulting." },
-    { icon: <GradCapIcon />, num: "05", title: "Corporate Training", desc: "Practical, outcome-driven training for teams that need to perform." },
-    { icon: <TrendIcon />, num: "06", title: "Post Placement Services", desc: "We don't disappear after the offer letter — we stay engaged." },
+    { icon: <UsersIcon />, num: "01", title: "Placement Services", slug: "placement-services", desc: "Curated talent for permanent, contract and executive roles across India." },
+    { icon: <ClipboardIcon />, num: "02", title: "Payroll Services", slug: "payroll-services", desc: "End-to-end payroll operations, statutory-ready and audit-friendly." },
+    { icon: <ShieldIcon />, num: "03", title: "HR Compliance", slug: "hr-compliance", desc: "Stay fully compliant with Indian labour and statutory regulations." },
+    { icon: <BuildingIcon />, num: "04", title: "HR Outsourcing", slug: "hr-outsourcing", desc: "Your extended HR team — policies, audits, performance and consulting." },
+    { icon: <GradCapIcon />, num: "05", title: "Corporate Training", slug: "corporate-training", desc: "Practical, outcome-driven training for teams that need to perform." },
+    { icon: <TrendIcon />, num: "06", title: "Post Placement Services", slug: "post-placement-services", desc: "We don't disappear after the offer letter — we stay engaged." },
   ];
   return (
-    <Box sx={{ background: "#F7F9FB", py: { xs: 8, md: 12 } }}>
+    <Box sx={{ background: "#F7F9FB", pt: { xs: 4, md: 5 }, pb: { xs: 8, md: 12 } }}>
       <Container maxWidth="xl" sx={{ px: sidePad }}>
         <Box sx={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "flex-end", mb: 6, gap: 2 }}>
           <Box>
@@ -403,7 +413,7 @@ function Services() {
               Everything you need under one roof.
             </Typography>
           </Box>
-          <Box sx={{ display: "flex", alignItems: "center", gap: 1, cursor: "pointer" }}>
+          <Box component={Link} to="/services" sx={{ display: "flex", alignItems: "center", gap: 1, cursor: "pointer" }}>
             <Typography sx={{ fontSize: "15px", fontWeight: 600, color: "#0A2647" }}>Explore all services</Typography>
             <ArrowRight color="#0A2647" />
           </Box>
@@ -413,6 +423,8 @@ function Services() {
           {services.map((s, i) => (
             <Box
               key={s.title}
+              component={Link}
+              to={`/services#${s.slug}`}
               sx={{
                 flex: "1 1 33.33%",
                 minWidth: 280,
@@ -420,6 +432,8 @@ function Services() {
                 borderRight: (i + 1) % 3 !== 0 ? "1px solid #E2E6EB" : "none",
                 borderBottom: i < 3 ? "1px solid #E2E6EB" : "none",
                 cursor: "pointer",
+                textDecoration: "none",
+                display: "block",
                 transition: "background 0.3s ease",
                 "&:hover": { background: "#0A2647" },
                 "&:hover .service-title": { color: "#fff" },
@@ -567,6 +581,7 @@ const Pill = ({ label, active }) => (
         </Box>
 
         <Button
+          component={Link} to="/industries"
           sx={{ textTransform: "none", fontWeight: 600, fontSize: "15px", color: "#fff", border: "1px solid rgba(255,255,255,0.4)", borderRadius: "6px", px: 3, py: 1.3, "&:hover": { background: "rgba(255,255,255,0.08)" } }}
           endIcon={<ArrowRight color="#fff" />}
         >
@@ -648,7 +663,7 @@ function Gallery() {
               Inside the work we do.
             </Typography>
           </Box>
-          <Box sx={{ display: "flex", alignItems: "center", gap: 1, cursor: "pointer" }}>
+          <Box component={Link} to="/Gallery" sx={{ display: "flex", alignItems: "center", gap: 1, cursor: "pointer" }}>
             <Typography sx={{ fontSize: "15px", fontWeight: 600, color: "#0A2647" }}>View full gallery</Typography>
             <ArrowRight color="#0A2647" />
           </Box>
@@ -696,6 +711,7 @@ function EmployerCandidateCTA() {
             Share your requirement — a dedicated account manager will get back within 24 hours.
           </Typography>
           <Button
+            component={Link} to="/hire-employees"
             sx={{ textTransform: "none", fontWeight: 700, fontSize: "15px", color: "#0A2647", background: "#D4A017", borderRadius: "6px", px: 3, py: 1.4, "&:hover": { background: "#c39515" } }}
             endIcon={<ArrowRight color="#0A2647" />}
           >
@@ -715,6 +731,7 @@ function EmployerCandidateCTA() {
             Upload your resume and our recruiters will match you with the right opportunity.
           </Typography>
           <Button
+            component={Link} to="/apply-for-jobs"
             sx={{ textTransform: "none", fontWeight: 700, fontSize: "15px", color: "#fff", background: "#0A2647", borderRadius: "6px", px: 3, py: 1.4, mb: 4, "&:hover": { background: "#0d2f57" } }}
             endIcon={<ArrowRight color="#fff" />}
           >

@@ -94,7 +94,7 @@ export default function Header() {
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
-            py: 1.5,
+            py: 2.5,
           }}
         >
           {/* Logo */}
@@ -194,7 +194,8 @@ export default function Header() {
                 borderRadius: "6px",
                 px: 2.5,
                 py: 1,
-                "&:hover": { background: "#0d2f57" },
+                "&:hover": { background: "#D4A017" },
+                "&&:hover": { color: "black"},
               }}
             >
               Hire Employees

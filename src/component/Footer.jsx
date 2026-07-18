@@ -2,7 +2,14 @@ import { Link as RouterLink } from "react-router-dom";
 import { Box, Container, Typography, IconButton } from "@mui/material";
 import Logo from "../assets/Logo.jpeg"
 
-const services = ["Placement Services", "Payroll Services", "HR Compliance", "HR Outsourcing", "Corporate Training", "Post Placement"];
+const services = [
+  { label: "Placement Services", path: "/services#placement-services" },
+  { label: "Payroll Services", path: "/services#payroll-services" },
+  { label: "HR Compliance", path: "/services#hr-compliance" },
+  { label: "HR Outsourcing", path: "/services#hr-outsourcing" },
+  { label: "Corporate Training", path: "/services#corporate-training" },
+  { label: "Post Placement", path: "/services#post-placement-services" },
+];
 const company = [
   { label: "About Us", path: "/about" },
   { label: "Industries", path: "/industries" },
@@ -14,9 +21,9 @@ const forYou = [
   { label: "Apply for Jobs", path: "/apply-for-jobs" },
   { label: "Upload Resume", path: "/apply-for-jobs" },
   { label: "Hire Employees", path: "/hire-employees" },
-  { label: "Careers @ OSS", path: "/careers" },
-  { label: "Privacy Policy", path: "/privacy-policy" },
-  { label: "Terms & Conditions", path: "/terms" },
+  { label: "Careers @ OSS", path: "/hire-employees" },
+  { label: "Privacy Policy", path: "/privacypolicy" },
+  { label: "Terms & Conditions", path: "/TermsConditions" },
 ];
 
 // inline SVG icons — keeps Vite build clean, no @mui/icons-material
@@ -148,8 +155,8 @@ export default function Footer() {
           <Box sx={{ flex: "0 1 180px" }}>
             <Typography sx={colHeadSx}>SERVICES</Typography>
             {services.map((s) => (
-              <Typography key={s} component={RouterLink} to="/services" sx={linkSx}>
-                {s}
+              <Typography key={s.label} component={RouterLink} to={s.path} sx={linkSx}>
+                {s.label}
               </Typography>
             ))}
           </Box>
@@ -211,10 +218,10 @@ export default function Footer() {
               © 2026 One Stop Solution. All rights reserved.
             </Typography>
             <Box sx={{ display: "flex", gap: 3, flexWrap: "wrap" }}>
-              <Typography component={RouterLink} to="/privacy-policy" sx={{ fontSize: "13.5px", color: "#8B93A1", textDecoration: "none", "&:hover": { color: "#fff" } }}>
+              <Typography component={RouterLink} to="/privacypolicy" sx={{ fontSize: "13.5px", color: "#8B93A1", textDecoration: "none", "&:hover": { color: "#fff" } }}>
                 Privacy Policy
               </Typography>
-              <Typography component={RouterLink} to="/terms" sx={{ fontSize: "13.5px", color: "#8B93A1", textDecoration: "none", "&:hover": { color: "#fff" } }}>
+              <Typography component={RouterLink} to="/TermsConditions" sx={{ fontSize: "13.5px", color: "#8B93A1", textDecoration: "none", "&:hover": { color: "#fff" } }}>
                 Terms & Conditions
               </Typography>
               <Typography sx={{ fontSize: "13.5px", color: "#D4A017", fontWeight: 600 }}>

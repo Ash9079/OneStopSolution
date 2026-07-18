@@ -26,6 +26,9 @@ const COLORS = {
   muted: "#6B7280",
 };
 
+// Matches the padding used across Home / Industries / About / Gallery / Services pages
+const sidePad = { xs: 2.5, sm: 4, md: 8, lg: 10 };
+
 function useInView(threshold = 0.15) {
   const ref = useRef(null);
   const [visible, setVisible] = useState(false);
@@ -80,7 +83,7 @@ function FieldLabel({ children, required }) {
         fontSize: "11px",
         letterSpacing: "2px",
         fontWeight: 700,
-        color: COLORS.navy,
+        color: COLORS.teal,
       }}
     >
       {children}
@@ -111,8 +114,9 @@ function ContactItem({ icon: Icon, title, children }) {
     >
       <Box
         sx={{
-          width: 36,
-          height: 36,
+          width: 44,
+          height: 44,
+          borderRadius: "6px",
           bgcolor: COLORS.navy,
           display: "flex",
           alignItems: "center",
@@ -123,7 +127,7 @@ function ContactItem({ icon: Icon, title, children }) {
         <Icon
           sx={{
             color: "#fff",
-            fontSize: 18,
+            fontSize: 20,
           }}
         />
       </Box>
@@ -157,7 +161,7 @@ function ContactItem({ icon: Icon, title, children }) {
 
 const textFieldSx = {
   "& .MuiOutlinedInput-root": {
-    borderRadius: 0,
+    borderRadius: "4px",
     background: "#fff",
 
     "& fieldset": {
@@ -218,7 +222,7 @@ function Hero() {
         }}
       />
 
-      <Container maxWidth="lg">
+      <Container maxWidth="xl" sx={{ px: sidePad }}>
         <Reveal>
           {/* Small Heading */}
 
@@ -315,17 +319,9 @@ function ContactInfo() {
         <ContactItem icon={LocationOnOutlinedIcon} title="OFFICE">
           1 Stop Solution
           <br />
-          Shop No. 1,
+          Shop No. 1, Opp. Jyoti Bike Center,
           <br />
-          Opp. Jyoti Bike Center,
-          <br />
-          Near Sanjivni Hospital,
-          <br />
-          Naigaon,
-          <br />
-          Dadar East,
-          <br />
-          Mumbai – 400014
+          Near Sanjivni Hospital, Naigaon, Dadar East, Mumbai – 400014
         </ContactItem>
 
         {/* Social Icons */}
@@ -343,8 +339,9 @@ function ContactInfo() {
               component="a"
               href="#"
               sx={{
-                width: 36,
-                height: 36,
+                width: 40,
+                height: 40,
+                borderRadius: "6px",
                 border: `1px solid ${COLORS.border}`,
                 display: "flex",
                 justifyContent: "center",
@@ -374,12 +371,12 @@ function ContactSection({ children }) {
       sx={{
         py: {
           xs: 8,
-          md: 12,
+          md: 10,
         },
         bgcolor: "#fff",
       }}
     >
-      <Container maxWidth="lg">
+      <Container maxWidth="xl" sx={{ px: sidePad }}>
         <Box
           sx={{
             display: "flex",
@@ -390,7 +387,7 @@ function ContactSection({ children }) {
             alignItems: "flex-start",
             gap: {
               xs: 6,
-              md: 10,
+              md: 8,
             },
           }}
         >
@@ -400,7 +397,7 @@ function ContactSection({ children }) {
             sx={{
               width: {
                 xs: "100%",
-                md: "33.333%",
+                md: "30%",
               },
               flexShrink: 0,
             }}
@@ -414,7 +411,7 @@ function ContactSection({ children }) {
             sx={{
               width: {
                 xs: "100%",
-                md: "66.666%",
+                md: "70%",
               },
             }}
           >
@@ -458,7 +455,8 @@ function ContactForm() {
         onSubmit={handleSubmit}
         sx={{
           border: `1px solid ${COLORS.border}`,
-          bgcolor: "#fff",
+          borderRadius: "4px",
+          bgcolor: COLORS.lightBg,
           p: {
             xs: 3,
             md: 5,
@@ -554,7 +552,7 @@ function ContactForm() {
               fullWidth
               required
               multiline
-              rows={6}
+              rows={5}
               value={formData.message}
               onChange={handleChange("message")}
               placeholder="Tell us how we can help — hiring, payroll, compliance or general enquiry."
@@ -573,23 +571,22 @@ function ContactForm() {
             <Button
               type="submit"
               variant="contained"
-              endIcon={<SendIcon />}
+              startIcon={<SendIcon sx={{ fontSize: 18 }} />}
               sx={{
                 mt: 1,
                 bgcolor: COLORS.navy,
                 color: "#fff",
                 textTransform: "none",
                 fontWeight: 600,
-                px: 4,
-                py: 1.5,
-                borderRadius: 0,
+                fontSize: "15px",
+                px: 3.5,
+                py: 1.4,
+                borderRadius: "4px",
                 boxShadow: "none",
                 transition: ".25s",
 
-                "&:hover": {
-                  bgcolor: COLORS.teal,
-                  boxShadow: "none",
-                },
+                "&:hover": { bgcolor:" #D4A017", boxShadow: "none" },
+                "&&:hover": { color:"Black"},
               }}
             >
               Send Message
@@ -618,7 +615,7 @@ function MapSection() {
         bgcolor: "#fff",
       }}
     >
-      <Container maxWidth="lg">
+      <Container maxWidth="xl" sx={{ px: sidePad }}>
         <Reveal>
           <Typography
             sx={{
@@ -636,6 +633,7 @@ function MapSection() {
             sx={{
               overflow: "hidden",
               border: `1px solid ${COLORS.border}`,
+              borderRadius: "4px",
               width: "100%",
               height: {
                 xs: 320,

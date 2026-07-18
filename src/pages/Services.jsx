@@ -3,10 +3,10 @@ import {
   Box,
   Container,
   Typography,
-  Grid,
   Stack,
   Fab,
 } from "@mui/material";
+import { useLocation } from "react-router-dom";
 import AddIcon from "@mui/icons-material/Add";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutlined";
 import GroupsOutlinedIcon from "@mui/icons-material/GroupsOutlined";
@@ -16,9 +16,6 @@ import ApartmentOutlinedIcon from "@mui/icons-material/ApartmentOutlined";
 import SchoolOutlinedIcon from "@mui/icons-material/SchoolOutlined";
 import TrendingUpOutlinedIcon from "@mui/icons-material/TrendingUpOutlined";
 
-// ---------------------------------------------------------------------------
-// Palette (single-color theming, no gradients)
-// ---------------------------------------------------------------------------
 const COLORS = {
   navy: "#0F2A4A",
   teal: "#2E7D6E",
@@ -29,41 +26,26 @@ const COLORS = {
   divider: "#E4E7EB",
 };
 
-// ---------------------------------------------------------------------------
-// Data six practices
-// ---------------------------------------------------------------------------
+const sidePad = { xs: 2.5, sm: 4, md: 8, lg: 10 };
+
+// `slug` must match the anchors used on Home.jsx service cards
+// and Footer.jsx "SERVICES" links (/services#slug).
 const PRACTICES = [
   {
     number: "01",
+    slug: "placement-services",
     icon: GroupsOutlinedIcon,
     title: "Placement Services",
-    description:
-      "Curated talent for permanent, contract and executive roles across India.",
+    description: "Curated talent for permanent, contract and executive roles across India.",
     columns: [
-      [
-        "Permanent Recruitment",
-        "Bulk Hiring",
-        "Campus Recruitment",
-        "Non-IT Recruitment",
-        "Healthcare Recruitment",
-        "Retail Recruitment",
-        "Finance Recruitment",
-        "Blue Collar Recruitment",
-      ],
-      [
-        "Contract Staffing",
-        "Executive Search",
-        "IT Recruitment",
-        "Manufacturing Recruitment",
-        "Hospitality Recruitment",
-        "Sales Recruitment",
-        "Jewellery Industry Recruitment",
-      ],
+      ["Permanent Recruitment", "Bulk Hiring", "Campus Recruitment", "Non-IT Recruitment", "Healthcare Recruitment", "Retail Recruitment", "Finance Recruitment", "Blue Collar Recruitment"],
+      ["Contract Staffing", "Executive Search", "IT Recruitment", "Manufacturing Recruitment", "Hospitality Recruitment", "Sales Recruitment", "Jewellery Industry Recruitment"],
     ],
     background: "white",
   },
   {
     number: "02",
+    slug: "payroll-services",
     icon: AssignmentOutlinedIcon,
     title: "Payroll Services",
     description: "End-to-end payroll operations, statutory-ready and audit-friendly.",
@@ -75,6 +57,7 @@ const PRACTICES = [
   },
   {
     number: "03",
+    slug: "hr-compliance",
     icon: VerifiedUserOutlinedIcon,
     title: "HR Compliance",
     description: "Stay fully compliant with Indian labour and statutory regulations.",
@@ -86,6 +69,7 @@ const PRACTICES = [
   },
   {
     number: "04",
+    slug: "hr-outsourcing",
     icon: ApartmentOutlinedIcon,
     title: "HR Outsourcing",
     description: "Your extended HR team policies, audits, performance and consulting.",
@@ -97,6 +81,7 @@ const PRACTICES = [
   },
   {
     number: "05",
+    slug: "corporate-training",
     icon: SchoolOutlinedIcon,
     title: "Corporate Training",
     description: "Practical, outcome-driven training for teams that need to perform.",
@@ -108,6 +93,7 @@ const PRACTICES = [
   },
   {
     number: "06",
+    slug: "post-placement-services",
     icon: TrendingUpOutlinedIcon,
     title: "Post Placement Services",
     description: "We don't disappear after the offer letter we stay engaged.",
@@ -119,9 +105,6 @@ const PRACTICES = [
   },
 ];
 
-// ---------------------------------------------------------------------------
-// Scroll reveal fade + slide up as content enters the viewport
-// ---------------------------------------------------------------------------
 function useInView(threshold = 0.15) {
   const ref = useRef(null);
   const [inView, setInView] = useState(false);
@@ -130,7 +113,6 @@ function useInView(threshold = 0.15) {
     const node = ref.current;
     if (!node) return;
 
-    // Respect users who prefer reduced motion show content immediately
     const prefersReducedMotion =
       typeof window !== "undefined" &&
       window.matchMedia &&
@@ -174,33 +156,22 @@ function Reveal({ children, delay = 0, y = 28 }) {
   );
 }
 
-// ---------------------------------------------------------------------------
-// Checklist column
-// ---------------------------------------------------------------------------
 function ChecklistColumn({ items }) {
   return (
-    <Stack spacing={0}>
+    <Stack spacing={0} sx={{ height: "100%" }}>
       {items.map((item, idx) => (
         <Box
           key={item}
           sx={{
             display: "flex",
-            alignItems: "center",
+            alignItems: "flex-start",
             gap: 1.5,
             py: 1.75,
             borderBottom: idx === items.length - 1 ? "none" : `1px solid ${COLORS.divider}`,
           }}
         >
-          <CheckCircleOutlineIcon
-            sx={{ fontSize: 19, color: COLORS.gold, flexShrink: 0, strokeWidth: 0.5 }}
-          />
-          <Typography
-            sx={{
-              fontSize: { xs: "0.95rem", md: "1.05rem" },
-              color: COLORS.navy,
-              fontWeight: 500,
-            }}
-          >
+          <CheckCircleOutlineIcon sx={{ fontSize: 19, color: COLORS.gold, flexShrink: 0, mt: "2px" }} />
+          <Typography sx={{ fontSize: { xs: "0.95rem", md: "1.05rem" }, color: COLORS.navy, fontWeight: 500, lineHeight: 1.5 }}>
             {item}
           </Typography>
         </Box>
@@ -209,11 +180,6 @@ function ChecklistColumn({ items }) {
   );
 }
 
-// ---------------------------------------------------------------------------
-// One practice section
-// ---------------------------------------------------------------------------
-// Practices where intro sits LEFT and checklist sits RIGHT on desktop.
-// All other practices keep checklist LEFT / intro RIGHT.
 const INTRO_LEFT_TITLES = ["Placement Services", "HR Compliance", "Corporate Training"];
 
 function PracticeSection({ practice }) {
@@ -223,29 +189,20 @@ function PracticeSection({ practice }) {
   const reverse = !introLeft;
 
   return (
-    <Box sx={{ backgroundColor: bg, py: { xs: 6, md: 9 } }}>
-      <Container maxWidth="lg">
-        <Grid container spacing={{ xs: 5, md: 8 }} alignItems="flex-start">
-          {/* Intro column */}
-          <Grid
-            item
-            xs={12}
-            md={4}
-            sx={{
-              order: { xs: 1, md: reverse ? 2 : 1 },
-            }}
-          >
+    <Box id={practice.slug} sx={{ backgroundColor: bg, py: { xs: 6, md: 9 }, scrollMarginTop: "88px" }}>
+      <Container maxWidth="xl" sx={{ px: sidePad }}>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: { xs: "column", md: reverse ? "row-reverse" : "row" },
+            alignItems: "flex-start",
+            gap: { xs: 5, md: 8 },
+          }}
+        >
+          <Box sx={{ width: { xs: "100%", md: "33.333%" }, flexShrink: 0 }}>
             <Reveal>
               <Icon sx={{ fontSize: 40, color: COLORS.gold, mb: 2 }} />
-              <Typography
-                sx={{
-                  fontSize: "0.8rem",
-                  fontWeight: 700,
-                  letterSpacing: "0.12em",
-                  color: COLORS.teal,
-                  mb: 1.5,
-                }}
-              >
+              <Typography sx={{ fontSize: "0.8rem", fontWeight: 700, letterSpacing: "0.12em", color: COLORS.teal, mb: 1.5 }}>
                 PRACTICE {practice.number}
               </Typography>
               <Typography
@@ -263,43 +220,31 @@ function PracticeSection({ practice }) {
                 {practice.description}
               </Typography>
             </Reveal>
-          </Grid>
+          </Box>
 
-          {/* Checklist columns */}
-          <Grid item xs={12} md={8} sx={{ order: { xs: 2, md: reverse ? 1 : 2 } }}>
+          <Box sx={{ width: { xs: "100%", md: "66.666%" } }}>
             <Reveal delay={0.12}>
-              <Grid container spacing={{ xs: 0, sm: 4 }}>
+              <Box sx={{ display: "flex", flexWrap: "wrap", gap: { xs: 0, sm: 6 } }}>
                 {practice.columns.map((col, idx) => (
-                  <Grid item xs={12} sm={6} key={idx}>
+                  <Box key={idx} sx={{ flex: { xs: "1 1 100%", sm: "1 1 calc(50% - 24px)" }, minWidth: 240 }}>
                     <ChecklistColumn items={col} />
-                  </Grid>
+                  </Box>
                 ))}
-              </Grid>
+              </Box>
             </Reveal>
-          </Grid>
-        </Grid>
+          </Box>
+        </Box>
       </Container>
     </Box>
   );
 }
 
-// ---------------------------------------------------------------------------
-// Hero
-// ---------------------------------------------------------------------------
 function Hero() {
   return (
     <Box sx={{ backgroundColor: COLORS.bgLight, py: { xs: 8, md: 12 }, position: "relative" }}>
-      <Container maxWidth="lg">
+      <Container maxWidth="xl" sx={{ px: sidePad }}>
         <Reveal>
-          <Typography
-            sx={{
-              fontSize: "0.8rem",
-              fontWeight: 700,
-              letterSpacing: "0.12em",
-              color: COLORS.teal,
-              mb: 2,
-            }}
-          >
+          <Typography sx={{ fontSize: "0.8rem", fontWeight: 700, letterSpacing: "0.12em", color: COLORS.teal, mb: 2 }}>
             OUR SERVICES
           </Typography>
           <Typography
@@ -318,14 +263,7 @@ function Hero() {
             </Box>{" "}
             Zero handoffs.
           </Typography>
-          <Typography
-            sx={{
-              color: COLORS.textMuted,
-              fontSize: { xs: "1rem", md: "1.15rem" },
-              maxWidth: 640,
-              lineHeight: 1.6,
-            }}
-          >
+          <Typography sx={{ color: COLORS.textMuted, fontSize: { xs: "1rem", md: "1.15rem" }, maxWidth: 640, lineHeight: 1.6 }}>
             From talent discovery to payroll processing to statutory compliance
             everything a growing business needs to hire, pay and stay compliant.
           </Typography>
@@ -335,9 +273,6 @@ function Hero() {
   );
 }
 
-// ---------------------------------------------------------------------------
-// Floating action button
-// ---------------------------------------------------------------------------
 function FloatingCta() {
   return (
     <Fab
@@ -356,10 +291,20 @@ function FloatingCta() {
   );
 }
 
-// ---------------------------------------------------------------------------
-// Main export
-// ---------------------------------------------------------------------------
 export default function Services() {
+  const location = useLocation();
+
+  // Scroll to the matching practice section whenever we land on /services#slug
+  useEffect(() => {
+    if (!location.hash) return;
+    const id = location.hash.replace("#", "");
+    const timer = setTimeout(() => {
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 120);
+    return () => clearTimeout(timer);
+  }, [location]);
+
   return (
     <Box sx={{ backgroundColor: COLORS.bgWhite }}>
       <Hero />
