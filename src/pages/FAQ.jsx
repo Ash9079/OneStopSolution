@@ -82,6 +82,10 @@ const FAQS = [
     q: "Do you conduct background verification (BGV)?",
     a: "Yes, we offer background verification as part of our placement and HR outsourcing services, covering employment history, education and reference checks.",
   },
+   {
+    q: "Can you help with campous hiring",
+    a: "Yes. We run structured campus drives — from pre-placement talks to online assessments, PI and offer roll-out — across engineering, management and vocational institutes.",
+  },
   {
     q: "What is RPO and do you offer it?",
     a: "Recruitment Process Outsourcing (RPO) means we manage your entire hiring function — sourcing, screening, coordination and reporting — as an extension of your internal team. Yes, we offer this for clients with sustained hiring volume.",

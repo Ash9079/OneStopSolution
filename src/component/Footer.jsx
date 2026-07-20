@@ -215,7 +215,8 @@ export default function Footer() {
             }}
           >
             <Typography sx={{ fontSize: "13.5px", color: "#8B93A1" }}>
-              © 2026 One Stop Solution. All rights reserved.
+              © 2026 One Stop Solution. All rights reserved.| Website hosted and maintained by   
+               <a href="https://skynodellp.com" target="_blank" rel="noopener noreferrer" style={{color: "#FFFFFF",fontWeight: "700",textDecoration: "none",marginLeft: "6px",}} >SKY Node LLP</a>.
             </Typography>
             <Box sx={{ display: "flex", gap: 3, flexWrap: "wrap" }}>
               <Typography component={RouterLink} to="/privacypolicy" sx={{ fontSize: "13.5px", color: "#8B93A1", textDecoration: "none", "&:hover": { color: "#fff" } }}>

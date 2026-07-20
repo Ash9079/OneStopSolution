@@ -201,9 +201,6 @@ function Hero() {
     >
       {/* Ship Background */}
       <Box
-        component="img"
-        src="/images/ship.png" // <-- change this to your image path
-        alt="Ship"
         sx={{
           position: "absolute",
           right: {
