@@ -71,7 +71,7 @@ export default function Header() {
         position: "sticky",
         top: 0,
         zIndex: 1100,
-        background: "#EDF0F3",
+        background: "#fff",
         borderBottom: "1px solid #DDE2E8",
         boxShadow: "0 4px 4px rgba(10,38,71,0.06)",
       }}
@@ -127,7 +127,7 @@ export default function Header() {
               </Typography>
               <Typography
                 sx={{
-                  fontSize: "10px",
+                  fontSize: "11px",
                   letterSpacing: "2.5px",
                   fontWeight: 600,
                   color: "#3A7D6E",
@@ -147,7 +147,7 @@ export default function Header() {
                 component={RouterLink}
                 to={link.path}
                 sx={{
-                  fontSize: "15px",
+                  fontSize: "18px",
                   fontWeight: 500,
                   color: "#0A2647",
                   textDecoration: "none",
@@ -170,10 +170,10 @@ export default function Header() {
               sx={{
                 textTransform: "none",
                 fontWeight: 600,
-                fontSize: "14px",
+                fontSize: "15px",
                 color: "#0A2647",
                 border: "1.5px solid #0A2647",
-                borderRadius: "6px",
+                borderRadius: "0px",
                 px: 2.5,
                 py: 1,
                 "&:hover": { background: "rgba(10,38,71,0.05)" },
@@ -188,10 +188,10 @@ export default function Header() {
               sx={{
                 textTransform: "none",
                 fontWeight: 600,
-                fontSize: "14px",
+                fontSize: "15px",
                 color: "#fff",
                 background: "#0A2647",
-                borderRadius: "6px",
+                borderRadius: "0px",
                 px: 2.5,
                 py: 1,
                 "&:hover": { background: "#D4A017" },
@@ -240,7 +240,7 @@ export default function Header() {
                 fontWeight: 600,
                 color: "#0A2647",
                 border: "1.5px solid #0A2647",
-                borderRadius: "6px",
+                borderRadius: "0px",
               }}
             >
               Apply for Jobs
@@ -255,7 +255,7 @@ export default function Header() {
                 fontWeight: 600,
                 color: "#fff",
                 background: "#0A2647",
-                borderRadius: "6px",
+                borderRadius: "0px",
               }}
             >
               Hire Employees

@@ -12,6 +12,7 @@ import ApplyForJobs from "./pages/ApplyForJob";
 import HireEmployees from "./pages/HireEmployee";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import Terms from "./pages/TermsConditions";
+import FloatingContactMenu from "./component/FloatingContact";
 
 export default function App() {
   return (
@@ -31,6 +32,7 @@ export default function App() {
       <Route path="TermsConditions" element={<Terms />} />
     </Routes>
     <Footer />
+    <FloatingContactMenu position={{ bottom: 24, right: 24 }} />
     </>
   );
 }

@@ -5,21 +5,7 @@ import AddRoundedIcon from "@mui/icons-material/AddRounded";
 import PercentRoundedIcon from "@mui/icons-material/PercentRounded";
 import Diversity3RoundedIcon from "@mui/icons-material/Diversity3Rounded";
 import Home1 from "../assets/Home1.jpg"
-/**
- * ─────────────────────────────────────────────────────────────────────────
- * FONTS — add these once in your index.html <head> (or import in your
- * global CSS) so the serif display / body faces render correctly:
- *
- * <link rel="preconnect" href="https://fonts.googleapis.com" />
- * <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
- * <link
- *   href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Lora:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500;600;700&display=swap"
- *   rel="stylesheet"
- * />
- * ─────────────────────────────────────────────────────────────────────────
- */
 
-// ---- Design tokens (lifted from the reference site) -----------------------
 const COLORS = {
   navy: "#0A2647",
   navyDeep: "#081E3A",
@@ -38,10 +24,8 @@ const FONT_DISPLAY = `"Playfair Display", "Georgia", serif`;
 const FONT_BODY = `"Lora", "Georgia", serif`;
 const FONT_UI = `"Inter", "Helvetica Neue", Arial, sans-serif`;
 
-// Matches the padding used across Home / Industries / Gallery pages
 const sidePad = { xs: 2.5, sm: 4, md: 8, lg: 10 };
 
-// ---- Content ---------------------------------------------------------------
 const EXPERTISE_LEFT = [
   "Permanent Recruitment",
   "Payroll Outsourcing",
@@ -81,7 +65,6 @@ const PILLARS = [
   },
 ];
 
-// ---- Small reusable bits ----------------------------------------------------
 const Eyebrow = ({ children, color = COLORS.bodyInk, dash = true, sx = {} }) => (
   <Stack direction="row" alignItems="center" spacing={1.25} sx={{ mb: 2, ...sx }}>
     {dash && (
@@ -127,7 +110,6 @@ const ExpertiseRow = ({ text }) => (
   </Stack>
 );
 
-// ---- Page -------------------------------------------------------------------
 export default function AboutPage() {
   return (
     <Box sx={{ bgcolor: COLORS.bg, fontFamily: FONT_BODY }}>
@@ -266,7 +248,15 @@ export default function AboutPage() {
       </Container>
 
       {/* ── By the numbers (navy band) ───────────────────────────── */}
-      <Box sx={{ bgcolor: COLORS.navy, color: "white" }}>
+      <Box
+          sx={{
+            bgcolor: COLORS.navy,
+            color: "white",
+            minHeight: { xs: 320, sm: 380, md: 460 },
+            display: "flex",
+            alignItems: "center",
+          }}
+        >
         <Container maxWidth="xl" sx={{ px: sidePad, py: { xs: 6, md: 7 } }}>
           <Eyebrow
             color={COLORS.onNavySubtle}
@@ -301,24 +291,24 @@ export default function AboutPage() {
                   alignItems="baseline"
                   justifyContent={{ xs: "center", md: "flex-start" }}
                 >
-                  <Icon
-                    sx={{
-                      color: COLORS.goldSoft,
-                      fontSize: 22,
-                      position: "relative",
-                      top: 3,
-                    }}
-                  />
                   <Typography
                     sx={{
                       fontFamily: FONT_DISPLAY,
                       fontWeight: 600,
-                      fontSize: { xs: 32, md: 42 },
+                      fontSize: { xs: 42, md: 72 },
                       lineHeight: 1,
                     }}
                   >
                     {value}
                   </Typography>
+                  <Icon
+                    sx={{
+                      color: COLORS.goldSoft,
+                      fontSize: 42,
+                      position: "relative",
+                      top: 3,
+                    }}
+                  />
                 </Stack>
                 <Typography
                   sx={{

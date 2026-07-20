@@ -373,7 +373,6 @@ function ContactSection({ children }) {
           xs: 8,
           md: 10,
         },
-        bgcolor: "#fff",
       }}
     >
       <Container maxWidth="xl" sx={{ px: sidePad }}>
@@ -457,6 +456,7 @@ function ContactForm() {
           border: `1px solid ${COLORS.border}`,
           borderRadius: "4px",
           bgcolor: COLORS.lightBg,
+          bgcolor: "#fff",
           p: {
             xs: 3,
             md: 5,
@@ -612,7 +612,6 @@ function MapSection() {
           xs: 8,
           md: 10,
         },
-        bgcolor: "#fff",
       }}
     >
       <Container maxWidth="xl" sx={{ px: sidePad }}>
@@ -686,7 +685,7 @@ export default function Contact() {
   return (
     <Box
       sx={{
-        bgcolor: COLORS.white,
+        bgcolor: COLORS.lightBg,
       }}
     >
       <Hero />

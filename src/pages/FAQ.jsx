@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Box, Container, Typography, Collapse, Button } from "@mui/material";
+import { Link } from "react-router-dom";
 
 const COLORS = {
   navy: "#0A2647",
@@ -254,6 +255,8 @@ function FAQCTA() {
           Talk to our HR team directly.
         </Typography>
         <Button
+          component={Link}
+          to="/hire-employees"
           sx={{
             textTransform: "none",
             fontWeight: 600,

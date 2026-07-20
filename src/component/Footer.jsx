@@ -71,10 +71,10 @@ const colHeadSx = {
 };
 const linkSx = {
   display: "block",
-  fontSize: "15px",
+  fontSize: "18px",
   color: "#fff",
   textDecoration: "none",
-  mb: 1.6,
+  mb: 2.6,
   opacity: 0.92,
   "&:hover": { opacity: 1, textDecoration: "underline" },
 };
@@ -113,22 +113,22 @@ export default function Footer() {
                         width: 56,
                         height: 56,
                         objectFit: "contain",
-                        borderRadius: "10px", // Remove if your logo is square
+                        borderRadius: "0px", // Remove if your logo is square
                         background: "#fff",
                         p: 0.5, // Small padding
                     }}
                     />
               <Box>
-                <Typography sx={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: "22px" }}>
+                <Typography sx={{ fontFamily: "'Playfair Display', serif", fontWeight: 500, fontSize: "30px" }}>
                   One Stop Solution
                 </Typography>
-                <Typography sx={{ fontSize: "10px", letterSpacing: "2.5px", fontWeight: 600, color: "#3A7D6E" }}>
+                <Typography sx={{ fontSize: "11px", letterSpacing: "2.5px", fontWeight: 600, color: "#3A7D6E" }}>
                   HR &middot; PAYROLL &middot; COMPLIANCE
                 </Typography>
               </Box>
             </Box>
 
-            <Typography sx={{ fontSize: "14.5px", lineHeight: 1.8, color: "#C4CBD4", mb: 3 }}>
+            <Typography sx={{ fontSize: "16.5px", lineHeight: 1.8, color: "#C4CBD4", mb: 3 }}>
               India's trusted HR & placement partner. We secure your growth through premium recruitment,
               statutory compliance and workforce solutions — with a specialised practice for the Jewellery Industry.
             </Typography>
